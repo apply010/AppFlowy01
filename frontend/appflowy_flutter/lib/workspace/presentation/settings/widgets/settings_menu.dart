@@ -87,13 +87,6 @@ class SettingsMenu extends StatelessWidget {
               changeSelectedPage: changeSelectedPage,
             ),
             SettingsMenuElement(
-              page: SettingsPage.cloud,
-              selectedPage: currentPage,
-              label: LocaleKeys.settings_menu_cloudSettings.tr(),
-              icon: const FlowySvg(FlowySvgs.settings_page_cloud_m),
-              changeSelectedPage: changeSelectedPage,
-            ),
-            SettingsMenuElement(
               page: SettingsPage.shortcuts,
               selectedPage: currentPage,
               label: LocaleKeys.settings_shortcutsPage_menuLabel.tr(),
@@ -109,32 +102,6 @@ class SettingsMenu extends StatelessWidget {
               ),
               changeSelectedPage: changeSelectedPage,
             ),
-            if (userProfile.workspaceType == WorkspaceTypePB.ServerW &&
-                currentUserRole != null &&
-                currentUserRole != AFRolePB.Guest)
-              SettingsMenuElement(
-                page: SettingsPage.sites,
-                selectedPage: currentPage,
-                label: LocaleKeys.settings_sites_title.tr(),
-                icon: const FlowySvg(FlowySvgs.settings_page_earth_m),
-                changeSelectedPage: changeSelectedPage,
-              ),
-            if (FeatureFlag.planBilling.isOn && isBillingEnabled) ...[
-              SettingsMenuElement(
-                page: SettingsPage.plan,
-                selectedPage: currentPage,
-                label: LocaleKeys.settings_planPage_menuLabel.tr(),
-                icon: const FlowySvg(FlowySvgs.settings_page_plan_m),
-                changeSelectedPage: changeSelectedPage,
-              ),
-              SettingsMenuElement(
-                page: SettingsPage.billing,
-                selectedPage: currentPage,
-                label: LocaleKeys.settings_billingPage_menuLabel.tr(),
-                icon: const FlowySvg(FlowySvgs.settings_page_credit_card_m),
-                changeSelectedPage: changeSelectedPage,
-              ),
-            ],
             if (kDebugMode)
               SettingsMenuElement(
                 // no need to translate this page
@@ -181,18 +148,11 @@ class SimpleSettingsMenu extends StatelessWidget {
               child: SeparatedColumn(
                 separatorBuilder: () => const VSpace(16),
                 children: [
-                  SettingsMenuElement(
-                    page: SettingsPage.cloud,
-                    selectedPage: SettingsPage.cloud,
-                    label: LocaleKeys.settings_menu_cloudSettings.tr(),
-                    icon: const Icon(Icons.sync),
-                    changeSelectedPage: () {},
-                  ),
                   if (kDebugMode)
                     SettingsMenuElement(
                       // no need to translate this page
                       page: SettingsPage.featureFlags,
-                      selectedPage: SettingsPage.cloud,
+                      selectedPage: currentPage,
                       label: 'Feature Flags',
                       icon: const Icon(Icons.flag),
                       changeSelectedPage: () {},

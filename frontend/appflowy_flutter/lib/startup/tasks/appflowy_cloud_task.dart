@@ -26,10 +26,6 @@ const appflowyDeepLinkSchema = 'appflowy-flutter';
 class AppFlowyCloudDeepLink {
   AppFlowyCloudDeepLink() {
     _deepLinkHandlerRegistry = DeepLinkHandlerRegistry.instance
-      ..register(LoginDeepLinkHandler())
-      ..register(PaymentDeepLinkHandler())
-      ..register(InvitationDeepLinkHandler())
-      ..register(ExpireLoginDeepLinkHandler())
       ..register(OpenAppDeepLinkHandler());
 
     _deepLinkSubscription = _AppLinkWrapper.instance.listen(

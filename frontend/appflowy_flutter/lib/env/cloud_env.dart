@@ -52,32 +52,7 @@ const String kAppflowyCloudUrl = "https://beta.appflowy.cloud";
 /// if no valid setting is found.
 ///
 Future<AuthenticatorType> getAuthenticatorType() async {
-  final value = await getIt<KeyValueStorage>().get(KVKeys.kCloudType);
-  if (value == null && !integrationMode().isUnitTest) {
-    // if the cloud type is not set, then set it to AppFlowy Cloud as default.
-    await useAppFlowyBetaCloudWithURL(
-      kAppflowyCloudUrl,
-      AuthenticatorType.appflowyCloud,
-    );
-    return AuthenticatorType.appflowyCloud;
-  }
-
-  switch (value ?? "0") {
-    case "0":
-      return AuthenticatorType.local;
-    case "2":
-      return AuthenticatorType.appflowyCloud;
-    case "3":
-      return AuthenticatorType.appflowyCloudSelfHost;
-    case "4":
-      return AuthenticatorType.appflowyCloudDevelop;
-    default:
-      await useAppFlowyBetaCloudWithURL(
-        kAppflowyCloudUrl,
-        AuthenticatorType.appflowyCloud,
-      );
-      return AuthenticatorType.appflowyCloud;
-  }
+  return AuthenticatorType.local;
 }
 
 /// Determines whether authentication is enabled.
@@ -92,11 +67,6 @@ Future<AuthenticatorType> getAuthenticatorType() async {
 /// AppFlowy Cloud configuration is valid.
 /// Returns `false` otherwise.
 bool get isAuthEnabled {
-  final env = getIt<AppFlowyCloudSharedEnv>();
-  if (env.authenticatorType.isAppFlowyCloudEnabled) {
-    return env.appflowyCloudConfig.isValid;
-  }
-
   return false;
 }
 
@@ -106,7 +76,7 @@ bool get isLocalAuthEnabled {
 
 /// Determines if AppFlowy Cloud is enabled.
 bool get isAppFlowyCloudEnabled {
-  return currentCloudType().isAppFlowyCloudEnabled;
+  return false;
 }
 
 enum AuthenticatorType {

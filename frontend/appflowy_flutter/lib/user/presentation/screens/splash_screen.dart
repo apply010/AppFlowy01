@@ -72,13 +72,13 @@ class SplashScreen extends StatelessWidget {
     );
   }
 
-  void _handleUnauthenticated(BuildContext context, Unauthenticated result) {
-    // replace Splash screen as root page
-    if (isAuthEnabled || UniversalPlatform.isMobile) {
-      context.go(SignInScreen.routeName);
-    } else {
-      // if the env is not configured, we will skip to the 'skip login screen'.
-      context.go(SkipLogInScreen.routeName);
+  Future<void> _handleUnauthenticated(
+    BuildContext context,
+    Unauthenticated result,
+  ) async {
+    await _registerIfNeeded();
+    if (context.mounted) {
+      getIt<SplashRouter>().goHomeScreen(context);
     }
   }
 

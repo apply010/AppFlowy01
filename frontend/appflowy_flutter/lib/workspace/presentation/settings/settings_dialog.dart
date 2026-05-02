@@ -144,7 +144,7 @@ class SettingsDialog extends StatelessWidget {
       case SettingsPage.notifications:
         return const SettingsNotificationsView();
       case SettingsPage.cloud:
-        return SettingCloud(restartAppFlowy: () => restartApp());
+        return const SizedBox.shrink();
       case SettingsPage.shortcuts:
         return const SettingsShortcutsView();
       case SettingsPage.ai:
@@ -163,25 +163,10 @@ class SettingsDialog extends StatelessWidget {
           );
         }
       case SettingsPage.member:
-        return WorkspaceMembersPage(
-          userProfile: user,
-          workspaceId: workspace.workspaceId,
-        );
       case SettingsPage.plan:
-        return SettingsPlanView(
-          workspaceId: workspace.workspaceId,
-          user: user,
-        );
       case SettingsPage.billing:
-        return SettingsBillingView(
-          workspaceId: workspace.workspaceId,
-          user: user,
-        );
       case SettingsPage.sites:
-        return SettingsSitesPage(
-          workspaceId: workspace.workspaceId,
-          user: user,
-        );
+        return const SizedBox.shrink();
       case SettingsPage.featureFlags:
         return const FeatureFlagsPage();
     }
@@ -196,7 +181,7 @@ class SimpleSettingsDialog extends StatefulWidget {
 }
 
 class _SimpleSettingsDialogState extends State<SimpleSettingsDialog> {
-  SettingsPage page = SettingsPage.cloud;
+  SettingsPage page = SettingsPage.account;
 
   @override
   Widget build(BuildContext context) {
