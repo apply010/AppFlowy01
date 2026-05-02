@@ -19,7 +19,7 @@ abstract class Env {
   @EnviedField(
     obfuscate: false,
     varName: 'AUTHENTICATOR_TYPE',
-    defaultValue: 2,
+    defaultValue: 0,
   )
   static const int authenticatorType = _Env.authenticatorType;
 

@@ -67,49 +67,6 @@ class _SettingsAccountViewState extends State<SettingsAccountView> {
                 ],
               ),
 
-              // user email
-              // Only show email if the user is authenticated and not using local auth
-              if (isAuthEnabled &&
-                  state.userProfile.userAuthType != AuthTypePB.Local) ...[
-                SettingsCategory(
-                  title: LocaleKeys.newSettings_myAccount_myAccount.tr(),
-                  children: [
-                    SettingsEmailSection(
-                      userProfile: state.userProfile,
-                    ),
-                    ChangePasswordSection(
-                      userProfile: state.userProfile,
-                    ),
-                    AccountSignInOutSection(
-                      userProfile: state.userProfile,
-                      onAction:
-                          state.userProfile.userAuthType == AuthTypePB.Local
-                              ? widget.didLogin
-                              : widget.didLogout,
-                      signIn:
-                          state.userProfile.userAuthType == AuthTypePB.Local,
-                    ),
-                  ],
-                ),
-              ],
-
-              if (isAuthEnabled &&
-                  state.userProfile.userAuthType == AuthTypePB.Local) ...[
-                SettingsCategory(
-                  title: LocaleKeys.settings_accountPage_login_title.tr(),
-                  children: [
-                    AccountSignInOutSection(
-                      userProfile: state.userProfile,
-                      onAction:
-                          state.userProfile.userAuthType == AuthTypePB.Local
-                              ? widget.didLogin
-                              : widget.didLogout,
-                      signIn:
-                          state.userProfile.userAuthType == AuthTypePB.Local,
-                    ),
-                  ],
-                ),
-              ],
 
               // App version
               SettingsCategory(

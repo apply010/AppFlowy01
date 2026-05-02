@@ -147,7 +147,6 @@ class FlowyRunner {
           // The auto update task should be placed after the ApplicationInfoTask to fetch the latest version.
           if (!mode.isIntegrationTest) AutoUpdateTask(),
           const HotKeyTask(),
-          if (isAppFlowyCloudEnabled) InitAppFlowyCloudTask(),
           const InitAppWidgetTask(),
           const InitPlatformServiceTask(),
           const RecentServiceTask(),

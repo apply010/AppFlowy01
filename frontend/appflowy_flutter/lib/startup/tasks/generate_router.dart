@@ -53,8 +53,6 @@ GoRouter generateRouter(Widget child) {
       // It needs LaunchConfiguration as a parameter, so we get it from ApplicationWidget's child.
       _rootRoute(child),
       // Routes in both desktop and mobile
-      _signInScreenRoute(),
-      _skipLogInScreenRoute(),
       _workspaceErrorScreenRoute(),
       // Desktop only
       if (UniversalPlatform.isDesktop) _desktopHomeScreenRoute(),
@@ -62,7 +60,6 @@ GoRouter generateRouter(Widget child) {
       if (UniversalPlatform.isMobile) ...[
         // settings
         _mobileHomeSettingPageRoute(),
-        _mobileCloudSettingAppFlowyCloudPageRoute(),
         _mobileLaunchSettingsPageRoute(),
         _mobileFeatureFlagPageRoute(),
 
@@ -267,18 +264,6 @@ GoRoute _mobileAddMembersPageRoute() {
   );
 }
 
-GoRoute _mobileCloudSettingAppFlowyCloudPageRoute() {
-  return GoRoute(
-    parentNavigatorKey: AppGlobals.rootNavKey,
-    path: AppFlowyCloudPage.routeName,
-    pageBuilder: (context, state) {
-      return const MaterialExtendedPage(
-        child: AppFlowyCloudPage(),
-        name: AppFlowyCloudPage.routeName,
-      );
-    },
-  );
-}
 
 GoRoute _mobileLaunchSettingsPageRoute() {
   return GoRoute(
@@ -541,31 +526,6 @@ GoRoute _workspaceErrorScreenRoute() {
   );
 }
 
-GoRoute _skipLogInScreenRoute() {
-  return GoRoute(
-    path: SkipLogInScreen.routeName,
-    pageBuilder: (context, state) {
-      return CustomTransitionPage(
-        child: const SkipLogInScreen(),
-        transitionsBuilder: _buildFadeTransition,
-        transitionDuration: _slowDuration,
-      );
-    },
-  );
-}
-
-GoRoute _signInScreenRoute() {
-  return GoRoute(
-    path: SignInScreen.routeName,
-    pageBuilder: (context, state) {
-      return CustomTransitionPage(
-        child: const SignInScreen(),
-        transitionsBuilder: _buildFadeTransition,
-        transitionDuration: _slowDuration,
-      );
-    },
-  );
-}
 
 GoRoute _mobileEditorScreenRoute() {
   return GoRoute(
